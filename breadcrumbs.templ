@@ -1,0 +1,62 @@
+package components
+
+
+type BreadCrumbsProps struct {
+Links []BreadCrumbItem
+CurrentLink string
+
+}
+
+type BreadCrumbItem struct {
+Name string
+Link string
+}
+
+/**
+* ## Bread Crumbs Component
+*
+* Displays breadcrumbs
+*
+* @params BreadCrumbsProps
+* @author: github.com/markopolo123
+* @license: MIT
+*
+* ## Usage:
+*
+ @components.BreadCrumbs(BreadCrumbsProps{
+	Links: []components.BreadCrumbItem{
+		{Name: "Home", Link: "/"},
+		{Name: "Catalogue", Link: "/catalogue"},
+		{Name: "Item", Link: "/catalogue/item"},
+	},
+    CurrentLink: "Page Title",
+ })
+*
+*/
+
+func limitPageTitle(title string, maxLength int) string {
+    if len(title) > maxLength {
+        return title[:maxLength] + "..."
+    }
+    return title
+}
+
+templ BreadCrumbs(props BreadCrumbsProps) {
+    <nav role="navigation" class="fr-breadcrumb" aria-label={ limitPageTitle(props.CurrentLink, 20) }>
+        <button class="fr-breadcrumb__button" aria-expanded="false" aria-controls="breadcrumb-1">{ limitPageTitle(props.CurrentLink, 20) }</button>
+        <div class="fr-collapse" id="breadcrumb-1">
+            <ol class="fr-breadcrumb__list">
+                { for _, link := range props.Links {
+                <li>
+                    <a class="fr-breadcrumb__link" href={ link.Link }>{ link.Name }</a>
+                </li>
+                }
+                if props.CurrentLink != "" {
+                <li>
+                    <a class="fr-breadcrumb__link" aria-current="page">{ props.CurrentLink }</a>
+                </li>
+                }
+            </ol>
+        </div>
+    </nav>
+}
