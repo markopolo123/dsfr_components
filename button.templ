@@ -25,18 +25,19 @@ type ButtonProps struct {
 /**
 * Primary Button Component.
 *
-* @author: github.com/tego101 <-> x.com/tegodotdev
+* @author: github.com/markopolo123
 * @license: MIT
 * =====================
-* This is a button component with a primary style.
+* This is a button component
 *
 * Usage:
-* @components.PrimaryButton(components.ButtonProps{
-*	Label: "Click Me",
-*	AdditionalClasses: "fr-btn-secondary",
-*	Hyperscript: "on click toggle .red on me",
-* })
- */
+@components.Button(components.ButtonProps{
+	Label: "Click Me",
+AdditionalClasses: "fr-btn-secondary",
+Hyperscript: "on click toggle .red on me",
+})
+*/
+
 func buildClasses(props ButtonProps) string {
 	if props.IsDisabled {
 		return "fr-btn " + props.AdditionalClasses + " disabled"
@@ -44,7 +45,7 @@ func buildClasses(props ButtonProps) string {
 	return "fr-btn " + props.AdditionalClasses
 }
 
-templ button(props ButtonProps) {
+templ Button(props ButtonProps) {
 <button class={ buildClasses(props) }
 		if props.Id != " " {
 			id={ props.Id }
