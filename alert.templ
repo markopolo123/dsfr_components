@@ -1,0 +1,46 @@
+package components
+
+type AlertProp struct {
+AlertType string
+AlertTitle string
+AlertText string
+Closable bool
+AutoClose bool // if true, the alert will close after 5 seconds
+}
+
+/**
+* Primary Alert Component.
+*
+* @author: github.com/markopolo123
+* @license: MIT
+* =====================
+* This is an alert component
+*
+* Usage:
+@components.Alert(components.AlertProp{
+	AlertType: "information",
+	AlertTitle: "This is an alert",
+	AlertText: "This is the text of the alert",
+	Closable: true,
+	AutoClose: true,
+})
+*/
+
+
+templ Alert(props AlertProp) {
+	<div class="fr-alert fr-alert--{ props.AlertType }"
+		if props.AutoClose {
+		_="Wait 5s then hide me"
+		}
+	>
+		<h3 class="fr-alert__title">{ props.AlertTitle }</h3>
+		if props.AlertText != "" {
+		<p>{ props.AlertText }</p>
+		}
+		if props.Closable {
+			<button class="fr-btn--close fr-btn" title="Hide message" _="on click hide me">
+			Close Message
+			</button>
+		}
+	</div>
+}
