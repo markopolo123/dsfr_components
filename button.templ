@@ -49,8 +49,6 @@ templ Button(props ButtonProps) {
 <button class={ buildClasses(props) }
 		if props.Id != " " {
 			id={ props.Id }
-		} else {
-			id={ "button-" + components.UniqueKey() }
 		}
 		if props.Href != "" {
 			href={ props.Href }
@@ -78,6 +76,9 @@ templ Button(props ButtonProps) {
 		}
 		if props.XBindDisabled != "" {
 			x-bind:disabled={ props.XBindDisabled }
+		}
+		if props.Hyperscript != "" {
+			_={ props.Hyperscript }
 		}
 >
 		if props.Text != "" {
