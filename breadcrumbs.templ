@@ -4,7 +4,6 @@ package components
 type BreadCrumbsProps struct {
 Links []BreadCrumbItem
 CurrentLink string
-
 }
 
 type BreadCrumbItem struct {
@@ -46,7 +45,7 @@ templ BreadCrumbs(props BreadCrumbsProps) {
         <button class="fr-breadcrumb__button" aria-expanded="false" aria-controls="breadcrumb-1">{ limitPageTitle(props.CurrentLink, 20) }</button>
         <div class="fr-collapse" id="breadcrumb-1">
             <ol class="fr-breadcrumb__list">
-                { for _, link := range props.Links {
+                for _, link := range props.Links {
                 <li>
                     <a class="fr-breadcrumb__link" href={ link.Link }>{ link.Name }</a>
                 </li>
